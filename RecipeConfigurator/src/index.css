@@ -16,6 +16,12 @@
   margin-top: 20px;
   border-radius: 10px;
 }
+.recipe-ingredient-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .recipe-subtitle {
   color: #320071;

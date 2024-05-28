@@ -4,7 +4,10 @@ const RecipeStep = () => {
     <div>
       <h2 className="recipe-subtitle">RECETTE:</h2>
       <div>
-        <textarea className="recipe-textarea"></textarea>
+        <textarea
+          className="recipe-textarea"
+          placeholder="Ajoutez une étape"
+        ></textarea>
         <RecipeTimeInput />
       </div>
     </div>
