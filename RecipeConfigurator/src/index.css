@@ -6,11 +6,12 @@
 
 .recipe-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 .recipe-textarea {
-  width: 748px;
+  width: 500px;
   height: 142px;
   margin-top: 20px;
   border-radius: 10px;
