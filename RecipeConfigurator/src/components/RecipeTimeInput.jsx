@@ -8,7 +8,7 @@ const RecipeTimeInput = () => {
   };
 
   return (
-    <div>
+    <div className="containerSelect">
       <label htmlFor="recipe-select">
         Temps en min
         <input
