@@ -10,8 +10,10 @@ const RecipeTimeInput = () => {
   return (
     <div className="containerSelect">
       <label htmlFor="recipe-select">
-        Temps en min
+        Temps (min) : 
+        <br />
         <input
+        className="recipe-select-time"
           name="recipe-select"
           value={timeValue}
           onChange={handleTimeValue}

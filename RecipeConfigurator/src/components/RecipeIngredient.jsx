@@ -6,8 +6,9 @@ function RecipeIngredient() {
           className="recipe-textarea"
           placeholder="Ajouter un ingrédient"
         ></textarea>
-        Coût
-        <input type="number" className="recipe-ingredient-cost" />
+        <div className="recipe-controls">
+        <input type="number" className="recipe-ingredient-cost" placeholder="Coût"/>
+        </div>
       </label>
     </div>
   );
