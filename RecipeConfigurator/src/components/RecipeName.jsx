@@ -1,5 +1,5 @@
 function RecipeName() {
-  return <input type="text" placeholder="Nom de votre recette" />;
+  return <input className="recipe-nom" type="text" placeholder="Nom de votre recette" />;
 }
 
 export default RecipeName;

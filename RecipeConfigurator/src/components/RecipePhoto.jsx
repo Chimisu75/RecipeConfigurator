@@ -2,8 +2,8 @@
 
 const RecipePhoto = () =>{
     return(
-        <div className="containerPhoto">
-            <input className="ajoutPhoto" type="button" value="Ajouter photo"/>
+        <div className="recipe-container-photo">
+            <input className="recipe-ajout-photo" type="button" value="Ajouter photo"/>
         </div>
     );
 };

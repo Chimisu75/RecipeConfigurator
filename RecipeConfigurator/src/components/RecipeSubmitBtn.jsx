@@ -1,5 +1,6 @@
 function RecipeSubmitBtn() {
-  return <button type="submit">Enregistrer la recette</button>;
+  return <div className="recipe-submit-container">
+  <button className="recipe-submit" type="submit">Enregistrer la recette</button> </div>;
 }
 
 export default RecipeSubmitBtn;

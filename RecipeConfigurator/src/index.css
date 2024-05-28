@@ -10,73 +10,212 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   width: 100%;
+  padding-top: 90px;
 }
 
-.recipe-container {
+h1 {
+  font-size: 64px;
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+  color: #EB6E00;
+  margin-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.section1,
+.section2 {
+  margin: 20px;
+}
+.section2 {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
-.recipe-textarea {
-  width: 500px;
-  height: 142px;
-  margin-top: 20px;
+.recipe-nom {
+  width: 748px;
+  height: 45px;
+  background-color: white;
   border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+  padding-left: 20px;
+  margin-bottom: 40px;
 }
-.recipe-ingredient-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+.recipe-nom::placeholder {
+  color: #F7C581;
+  font-size: 19px;
 }
 
 .recipe-subtitle {
+  font-family: "Bebas Neue", sans-serif;
+    font-style: normal;
   color: #320071;
+  font-size: 34px;
+    margin-bottom: 20px;
 }
-
-.containerPhoto {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
+.recipe-textarea-etape {
+  width: 609px;
+  height: 141px;
   background-color: white;
-  height: 293px;
-  width: 503px;
-}
-
-.ajoutPhoto {
-  text-align: center;
-  font-weight: 400;
-  font-size: 20px; /* Correction de la faute de frappe de font-style à font-size */
-  text-decoration: underline;
   border: none;
-  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+  padding-left: 20px;
+  padding-top: 10px;
+  flex: 1;
+  margin-right: 20px;
 }
 
-.btn {
+.recipe-textarea-etape::placeholder {
+  color: #F7C581;
+  font-size: 19px;
+}
+
+.recipe-step-container {
+  display: flex;
+  align-items: flex-start;
+    margin-bottom: 15px;
+  }
+  
+  .recipe-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: #EB6E00;
+    font-size: 16px;
+  }
+  
+  .recipe-select-time,
+  .recipe-difficulty-select {
+    width: 108px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+    padding-left: 10px;
+    color: #F7C581;
+    font-size: 14px;
+  }
+  
+  .recipe-btn-etape {
+    color: #EB6E00;
+    border: none;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  
+  .recipe-btn-etape:hover {
+    color: #886BAD;
+  }
+  
+  .recipe-ajout-photo {
+  background-color: white;
+  border: none;
+    width: 450px;
+    height: 262px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.recipe-ajout-photo:hover {
+  color: #886BAD;
+  text-decoration: underline;
+}
+
+.recipe-nb-people {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  width: 266px;
+  height: 45px;
+  box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+  padding-left: 20px;
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.recipe-nb-people::placeholder {
+  color: #F7C581;
+  font-size: 16px;
+}
+
+.recipe-textarea {
+  width: 340px;
+  height: 40px;
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+    box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+  
+  .recipe-textarea::placeholder {
+    color: #F7C581;
+    font-size: 16px;
+  }
+  
+  .recipe-ingredient-label {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    justify-content: space-between;
+  }
+  
+  .recipe-ingredient-cost {
+    width: 100px;
+    height: 40px;
+  background-color: white;
+  border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+    padding-left: 10px;
+}
+
+.recipe-ingredient-cost::placeholder {
+  color: #F7C581;
+  font-size: 14px;
+}
+
+.recipe-btn-ingredient {
   color: #EB6E00;
   border: none;
-  font-size: 24px;
+  font-size: 19px;
+    margin-left: 20px;
 }
 
-.btn:hover {
-  color: #320071;
+.recipe-btn-ingredient:hover {
+  color: #886BAD;
 }
 
-.containerSelect {
-  width: 140px;
-  height: 30px;
+.recipe-submit {
+  width: 317px;
+  height: 47px;
+  background-color: #F7C581;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+  font-size: 36px;
 }
 
-.fileInput {
-  display: none;
+.recipe-submit-container {
+  display: flex;
+  justify-content: center;
 }
 
-.imagePreview {
-  max-width: 100%;
-  max-height: 100%;
+.recipe-submit:hover{
+  background-color: #886BAD;
 }
-

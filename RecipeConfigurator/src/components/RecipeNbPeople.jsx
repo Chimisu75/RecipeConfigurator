@@ -1,5 +1,5 @@
 function RecipeNbPeople() {
-  return <input type="number" placeholder="Nombre de Personnes" />;
+  return <input className="recipe-nb-people" type="number" placeholder="Nombre de Personnes" />;
 }
 
 export default RecipeNbPeople;
