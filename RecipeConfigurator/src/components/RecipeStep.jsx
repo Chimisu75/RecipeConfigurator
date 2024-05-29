@@ -1,5 +1,6 @@
 import RecipeTimeInput from "./RecipeTimeInput";
 import RecipeDifficulty from "./RecipeDifficulty";
+
 const RecipeStep = () => {
   return (
     <div>
@@ -9,9 +10,9 @@ const RecipeStep = () => {
           placeholder="Ajoutez une étape"
         ></textarea>
         <div className="recipe-controls">
-        <RecipeTimeInput />
-        <br />
-        <RecipeDifficulty />
+          <RecipeTimeInput />
+          <br />
+          <RecipeDifficulty />
         </div>
       </div>
     </div>
