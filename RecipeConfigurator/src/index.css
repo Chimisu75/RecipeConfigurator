@@ -1,18 +1,28 @@
+@font-face {
+  font-family: "Porter Sans Block";
+  src: url("./fonts/porter-sans/porter.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #EDE6ED;
   font-family: "Bellota Text", sans-serif;
 }
 
+.className {
+  font-family: "Porter Sans Block", sans-serif;
+}
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
-  width: 100%;
-  padding-top: 90px;
+}
+
+.article1 {
+  background-color: #EDE6ED;
+  padding: 90px;
 }
 
 h1 {
@@ -21,7 +31,6 @@ h1 {
   font-family: "Bebas Neue", sans-serif;
   font-style: normal;
   color: #EB6E00;
-  margin-bottom: 50px;
 }
 
 .container {
@@ -33,6 +42,7 @@ h1 {
 .section2 {
   margin: 20px;
 }
+
 .section2 {
   display: flex;
   flex-direction: column;
@@ -56,12 +66,12 @@ h1 {
 
 .recipe-subtitle {
   font-family: "Bebas Neue", sans-serif;
-    font-style: normal;
+  font-style: normal;
   color: #320071;
   font-size: 34px;
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
-  
+
 .recipe-textarea-etape {
   width: 609px;
   height: 141px;
@@ -73,6 +83,7 @@ h1 {
   padding-top: 10px;
   flex: 1;
   margin-right: 20px;
+  resize: none;
 }
 
 .recipe-textarea-etape::placeholder {
@@ -83,45 +94,60 @@ h1 {
 .recipe-step-container {
   display: flex;
   align-items: flex-start;
-    margin-bottom: 15px;
+  margin-bottom: 15px;
+  position: relative;
   }
   
-  .recipe-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: #EB6E00;
-    font-size: 16px;
+  .recipe-textarea-btn {
+    position: relative;
   }
   
-  .recipe-select-time,
-  .recipe-difficulty-select {
-    width: 108px;
-    height: 40px;
-    background-color: white;
+  .recipe-btn-delete {
+    position: absolute;
+    top: 5px;
+    right: 35px;
+    background-color: transparent;
     border: none;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
-    padding-left: 10px;
-    color: #F7C581;
-    font-size: 14px;
-  }
-  
-  .recipe-btn-etape {
-    color: #EB6E00;
-    border: none;
-    font-size: 20px;
-    margin-left: 20px;
-  }
-  
-  .recipe-btn-etape:hover {
-    color: #886BAD;
-  }
-  
-  .recipe-ajout-photo {
+    color: red;
+    font-size: 30px;
+    cursor: pointer;
+}
+.recipe-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #EB6E00;
+  font-size: 16px;
+}
+
+.recipe-select-time,
+.recipe-difficulty-select {
+  width: 108px;
+  height: 40px;
   background-color: white;
   border: none;
-    width: 450px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+  padding-left: 10px;
+  color: #F7C581;
+  font-size: 14px;
+}
+
+.recipe-btn-etape {
+  color: #EB6E00;
+  border: none;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.recipe-btn-etape:hover {
+  color: #886BAD;
+}
+
+.recipe-ajout-photo {
+  background-color: white;
+  border: none;
+  width: 450px;
     height: 262px;
     margin-bottom: 15px;
     font-size: 20px;
@@ -156,7 +182,7 @@ h1 {
   background-color: white;
   border: none;
   border-radius: 10px;
-    box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
+  box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
     padding-left: 20px;
     padding-top: 10px;
   }
@@ -178,7 +204,7 @@ h1 {
     height: 40px;
   background-color: white;
   border: none;
-    border-radius: 10px;
+  border-radius: 10px;
     box-shadow: 0 0 5px rgba(76, 1, 129, 0.382);
     padding-left: 10px;
 }
@@ -192,7 +218,7 @@ h1 {
   color: #EB6E00;
   border: none;
   font-size: 19px;
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .recipe-btn-ingredient:hover {
@@ -216,6 +242,101 @@ h1 {
   justify-content: center;
 }
 
-.recipe-submit:hover{
+.recipe-submit:hover {
   background-color: #886BAD;
+}
+
+/**Recette*/
+
+.article2 {
+  background-color: #FFF0DC;
+  width: 100%;
+  padding: 90px;
+}
+
+.section3,
+.section4 {
+  margin: 20px;
+}
+
+.section3 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 748px;
+}
+
+.section4 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+h2 {
+  font-optical-sizing: auto;
+  font-size: 60px;
+  font-style: normal;
+  color: #EB6E00;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: "Porter Sans Block";
+}
+
+.recipe-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 748px;
+  margin-bottom: 50px;
+}
+
+.recipe-info div {
+  display: flex;
+  align-items: center;
+}
+
+.recipe-info div p {
+  font-size: 20px;
+  color: #EB6E00;
+}
+
+.recipe-icone {
+  margin-right: 10px;
+}
+
+.recipe-recette-etapes {
+  color: #320071;
+  text-align: center;
+}
+
+.recipe-recette-etapes div {
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 36px;
+  font-family: "Bebas Neue", sans-serif;
+  text-align: center;
+  color: #320071;
+}
+
+.recipe-recette-etapes p {
+  font-size: 26px;
+}
+
+.recipe-img-recette {
+  width: 450px;
+  height: 262px;
+  margin-bottom: 50px;
+}
+
+.section4 p {
+  font-size: 26px;
+  text-align: center;
+  color: #320071;
+  margin-top: 20px;
+}
+
+.article2 h1 {
+  margin-top: 50px;
 }
