@@ -7,8 +7,16 @@ import RecipeNbPeople from "./components/RecipeNbPeople";
 import RecipeAjoutEtapes from "./components/RecipeAjoutEtapes";
 import RecipeAjoutIngredients from "./components/RecipeAjoutIngredients";
 import "./index.css";
+import { useState } from "react";
 
 function App() {
+  const [ingredients, setIngredients] = useState([]);
+
+  const handleAddIngredient = () => {
+    const newIngredient = { id: ingredients.length + 1, name: "" };
+    setIngredients([...ingredients, newIngredient]);
+  };
+  
   return (
     <>
     <article className="article1">
@@ -25,8 +33,12 @@ function App() {
       <RecipePhoto />
       <RecipeNbPeople />
       <h2 className="recipe-subtitle">INGREDIENTS : </h2>
-      <RecipeIngredient />
-      <RecipeAjoutIngredients />
+      {ingredients.map((ingredient, index) => (
+  <RecipeIngredient key={index} ingredient={ingredient} />
+))}
+      <div className="recipe-btn">
+            <button className="recipe-btn-ingredient" type="button" onClick={handleAddIngredient}> + Ajouter un ingrédient</button>
+      </div>
     </section>
   </div>
   <RecipeSubmitBtn />
