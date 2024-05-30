@@ -1,4 +1,4 @@
-function RecipeIngredient({ ingredient, onDelete }) {
+const RecipeIngredient = ({ ingredient, onDelete }) => {
   return (
     <div className="recipe-ingredient-container">
       <label className="recipe-ingredient-label">
@@ -27,3 +27,6 @@ function RecipeIngredient({ ingredient, onDelete }) {
 }
 
 export default RecipeIngredient;
+
+
+

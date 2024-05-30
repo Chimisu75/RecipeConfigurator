@@ -9,6 +9,7 @@ import { useState } from "react";
 
 function App() {
   const [etapes, setEtapes] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   const handleAddEtape = () => {
     const newEtape = { id: etapes.length + 1, name: "" };
@@ -18,7 +19,6 @@ function App() {
   const handleDeleteEtape = (id) => {
     setEtapes(etapes.filter((etape) => etape.id !== id));
   };
-  const [ingredients, setIngredients] = useState([]);
 
   const handleAddIngredient = () => {
     const newIngredient = { id: ingredients.length + 1, name: "" };
@@ -146,7 +146,7 @@ function App() {
             </div>
           </section>
         </div>
-        <h1>Bon appétit !</h1>
+        <h1>Bonne appétit !</h1>
       </article>
     </>
   );
