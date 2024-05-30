@@ -116,7 +116,7 @@ function App() {
             </div>
           </section>
         </div>
-        <h1>Bonne appétit !</h1>
+        <h1>Bon appétit !</h1>
       </article>
     </>
   );
