@@ -236,6 +236,9 @@ h1 {
   font-size: 30px;
   cursor: pointer;
 }
+.recipe-btn-ingredient-delete:hover {
+  color: blue;
+}
 .recipe-submit {
   width: 317px;
   height: 47px;

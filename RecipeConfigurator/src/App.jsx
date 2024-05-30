@@ -5,16 +5,29 @@ import RecipeSubmitBtn from "./components/RecipeSubmitBtn";
 import RecipeName from "./components/RecipeName";
 import RecipeNbPeople from "./components/RecipeNbPeople";
 import RecipeAjoutEtapes from "./components/RecipeAjoutEtapes";
-import RecipeAjoutIngredients from "./components/RecipeAjoutIngredients";
 import "./index.css";
 import { useState } from "react";
 
 function App() {
+  const [etapes, setEtapes] = useState([]);
+
+  const handleAddEtape = () => {
+    const newEtape = { id: etapes.length + 1, name: "" };
+    setEtapes([...etapes, newEtape]);
+  };
+
+  const handleDeleteEtape = (id) => {
+    setEtapes(etapes.filter(etape => etape.id !== id));
+  };
   const [ingredients, setIngredients] = useState([]);
 
   const handleAddIngredient = () => {
     const newIngredient = { id: ingredients.length + 1, name: "" };
     setIngredients([...ingredients, newIngredient]);
+  };
+
+  const handleDeleteIngredient = (id) => {
+    setIngredients(ingredients.filter(ingredient => ingredient.id !== id));
   };
   
   return (
@@ -25,17 +38,28 @@ function App() {
     <section className="section1">
       <RecipeName />
       <h2 className="recipe-subtitle">RECETTE :</h2>
-      <RecipeStep />
-      <RecipeStep />
-      <RecipeAjoutEtapes />
+      {etapes.map((etape) => (
+              <RecipeStep
+                key={etape.id}
+                etape={etape}
+                onDelete={handleDeleteEtape}
+              />
+            ))}
+      <div className="recipe-btn">
+            <button className="recipe-btn-ingredient" type="button" onClick={handleAddEtape}> + Ajouter un ingrédient</button>
+      </div>
     </section>
     <section className="section2">
       <RecipePhoto />
       <RecipeNbPeople />
       <h2 className="recipe-subtitle">INGREDIENTS : </h2>
-      {ingredients.map((ingredient, index) => (
-  <RecipeIngredient key={index} ingredient={ingredient} />
-))}
+      {ingredients.map((ingredient) => (
+              <RecipeIngredient
+                key={ingredient.id}
+                ingredient={ingredient}
+                onDelete={handleDeleteIngredient}
+              />
+            ))}
       <div className="recipe-btn">
             <button className="recipe-btn-ingredient" type="button" onClick={handleAddIngredient}> + Ajouter un ingrédient</button>
       </div>
