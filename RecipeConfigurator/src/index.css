@@ -4,6 +4,7 @@
   font-weight: bold;
   font-style: normal;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -112,6 +113,7 @@ h1 {
     font-size: 30px;
     cursor: pointer;
 }
+
 .recipe-controls {
   display: flex;
   flex-direction: column;
@@ -225,6 +227,18 @@ h1 {
   color: #886BAD;
 }
 
+.recipe-btn-ingredient-delete {
+  position: absolute;
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 30px;
+  cursor: pointer;
+}
+.recipe-btn-ingredient-delete:hover {
+  color: blue;
+}
 .recipe-submit {
   width: 317px;
   height: 47px;

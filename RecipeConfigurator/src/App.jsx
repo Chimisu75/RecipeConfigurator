@@ -4,21 +4,31 @@ import RecipeIngredient from "./components/RecipeIngredient";
 import RecipeSubmitBtn from "./components/RecipeSubmitBtn";
 import RecipeName from "./components/RecipeName";
 import RecipeNbPeople from "./components/RecipeNbPeople";
-
-import RecipeAjoutIngredients from "./components/RecipeAjoutIngredients";
 import "./index.css";
 import { useState } from "react";
 
 function App() {
-  const [recipeSteps, setRecipeSteps] = useState([]);
+  const [etapes, setEtapes] = useState([]);
 
-  const handleAddRecipeStep = () => {
-    const stepIndex = recipeSteps.length + 1;
-    setRecipeSteps((prevSteps) => [
-      ...prevSteps,
-      <RecipeStep key={stepIndex} onAddStep={handleAddRecipeStep} />,
-    ]);
+  const handleAddEtape = () => {
+    const newEtape = { id: etapes.length + 1, name: "" };
+    setEtapes([...etapes, newEtape]);
   };
+
+  const handleDeleteEtape = (id) => {
+    setEtapes(etapes.filter((etape) => etape.id !== id));
+  };
+  const [ingredients, setIngredients] = useState([]);
+
+  const handleAddIngredient = () => {
+    const newIngredient = { id: ingredients.length + 1, name: "" };
+    setIngredients([...ingredients, newIngredient]);
+  };
+
+  const handleDeleteIngredient = (id) => {
+    setIngredients(ingredients.filter((ingredient) => ingredient.id !== id));
+  };
+
   return (
     <>
       <article className="article1">
@@ -27,25 +37,45 @@ function App() {
           <section className="section1">
             <RecipeName />
             <h2 className="recipe-subtitle">RECETTE :</h2>
-            {recipeSteps.map((step) => step)}
-            <RecipeStep onAddStep={handleAddRecipeStep} />
+            {etapes.map((etape) => (
+              <RecipeStep
+                key={etape.id}
+                etape={etape}
+                onDelete={handleDeleteEtape}
+              />
+            ))}
             <div className="recipe-btn">
               <button
-                className="recipe-btn-etape"
+                className="recipe-btn-ingredient"
                 type="button"
-                onClick={handleAddRecipeStep}
+                onClick={handleAddEtape}
               >
-                + Ajouter une étape
+                {" "}
+                + Ajouter un ingrédient
               </button>
             </div>
           </section>
-
           <section className="section2">
             <RecipePhoto />
             <RecipeNbPeople />
             <h2 className="recipe-subtitle">INGREDIENTS : </h2>
-            <RecipeIngredient />
-            <RecipeAjoutIngredients />
+            {ingredients.map((ingredient) => (
+              <RecipeIngredient
+                key={ingredient.id}
+                ingredient={ingredient}
+                onDelete={handleDeleteIngredient}
+              />
+            ))}
+            <div className="recipe-btn">
+              <button
+                className="recipe-btn-ingredient"
+                type="button"
+                onClick={handleAddIngredient}
+              >
+                {" "}
+                + Ajouter un ingrédient
+              </button>
+            </div>
           </section>
         </div>
         <RecipeSubmitBtn />
