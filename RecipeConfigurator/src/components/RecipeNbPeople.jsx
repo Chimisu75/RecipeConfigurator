@@ -1,7 +1,15 @@
-function RecipeNbPeople() {
-  return <input className="recipe-nb-people" type="number" placeholder="Nombre de Personnes" />;
-}
+const RecipeNbPeople = ({ nbPeople, onChange }) => {
+  return (
+
+        <input
+          type="number"
+          className="recipe-nb-people"
+          value={nbPeople} 
+          onChange={(e) => onChange(e.target.value)}
+        />
+
+  );
+};
 
 export default RecipeNbPeople;
-
 

@@ -146,21 +146,35 @@ h1 {
   color: #886BAD;
 }
 
+.recipe-container-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 .recipe-ajout-photo {
   background-color: white;
   border: none;
   width: 450px;
-    height: 262px;
+  height: 262px;
     margin-bottom: 15px;
     font-size: 20px;
     text-decoration: underline;
+  text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .recipe-ajout-photo:hover {
   color: #886BAD;
   text-decoration: underline;
 }
 
+#file-upload-button {
+  background-color: #886BAD;
+}
 .recipe-nb-people {
   background-color: white;
   border: none;
