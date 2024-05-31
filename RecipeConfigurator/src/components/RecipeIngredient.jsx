@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const RecipeIngredient = ({ ingredient, onDelete }) => {
   return (
     <div className="recipe-ingredient-container">
@@ -24,9 +26,6 @@ const RecipeIngredient = ({ ingredient, onDelete }) => {
       </label>
     </div>
   );
-}
+};
 
 export default RecipeIngredient;
-
-
-
