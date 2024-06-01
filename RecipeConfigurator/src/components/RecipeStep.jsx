@@ -1,6 +1,6 @@
 import RecipeTimeInput from "./RecipeTimeInput";
 import RecipeDifficulty from "./RecipeDifficulty";
-const RecipeStep = ({etape, onDelete}) => {
+const RecipeStep = ({etape, onDelete, onChangeDifficulty}) => {
   return (
     <div>
       <div className="recipe-step-container">
@@ -14,7 +14,7 @@ const RecipeStep = ({etape, onDelete}) => {
         <div className="recipe-controls">
         <RecipeTimeInput />
         <br />
-        <RecipeDifficulty />
+        <RecipeDifficulty onChangeDifficulty={onChangeDifficulty}/>
         </div>
       </div>
     </div>

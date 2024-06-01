@@ -11,7 +11,10 @@ function App() {
   const [etapes, setEtapes] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [nbPeople, setNbPeople] = useState(1); 
-  const [photoUrl, setPhotoUrl] = useState(1);
+  const [photoUrl, setPhotoUrl] = useState('');
+  const [difficulty, setDifficulty] = useState("Facile");
+
+
 
   // étapes
   const handleAddEtape = () => {
@@ -21,6 +24,11 @@ function App() {
 
   const handleDeleteEtape = (id) => {
     setEtapes(etapes.filter(etape => etape.id !== id));
+  };
+
+  // difficulté
+  const handleDifficultyChange = (value) => {
+    setDifficulty(value);
   };
 
   // ingrédients
@@ -39,12 +47,6 @@ function App() {
     )));
   };
 
-  const handleCostChange = (id, cost) => { 
-    setIngredients(ingredients.map(ingredient => (
-      ingredient.id === id ? { ...ingredient, cost } : ingredient
-    )));
-  };
-
   // nb de personnes
   const handleNbPeopleChange = (value) => {
     setNbPeople(Number(value)); 
@@ -52,19 +54,21 @@ function App() {
 
   //coût
   const totalCost = ingredients.reduce((acc, ingredient) => acc + Number(ingredient.cost), 0);
-let costCategory;
+    let costCategory;
 
-if (totalCost <= 5) {
-  costCategory = "Bon marché";
-} else if (totalCost <= 15) {
-  costCategory = "Correct";
-} else {
-  costCategory = "Assez cher";
-}
+      if (totalCost <= 5) {
+        costCategory = "Bon marché";
+      } else if (totalCost <= 15) {
+        costCategory = "Correct";
+      } else {
+        costCategory = "Assez cher";
+      }
+
 
   return (
     <>
       <article className="article1">
+
         <h1>Créer votre recette</h1>
         <div className="container">
           <section className="section1">
@@ -75,6 +79,7 @@ if (totalCost <= 5) {
                 key={etape.id}
                 etape={etape}
                 onDelete={handleDeleteEtape}
+                onChangeDifficulty={handleDifficultyChange}
               />
             ))}
             <div className="recipe-btn">
@@ -115,7 +120,7 @@ if (totalCost <= 5) {
               </div>
               <div>
                 <img className="recipe-icone" src="/src/assets/imgDifficulte.png" alt="" />
-                <p>Facile</p>
+                <p>{difficulty}</p>
               </div>
               <div>
                 <img className="recipe-icone" src="/src/assets/imgCout.png" alt="" />
@@ -156,3 +161,6 @@ if (totalCost <= 5) {
 }
 
 export default App;
+
+
+
