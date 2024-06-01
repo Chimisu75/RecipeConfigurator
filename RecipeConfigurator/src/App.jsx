@@ -8,6 +8,7 @@ import "./index.css";
 import { useState } from "react";
 
 function App() {
+  const [recipeName, setRecipeName] = useState("");
   const [etapes, setEtapes] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [nbPeople, setNbPeople] = useState(1); 
@@ -16,7 +17,7 @@ function App() {
 
 
 
-  // étapes
+  //etapes
   const handleAddEtape = () => {
     const newEtape = { id: etapes.length + 1, name: "" };
     setEtapes([...etapes, newEtape]);
@@ -26,12 +27,24 @@ function App() {
     setEtapes(etapes.filter(etape => etape.id !== id));
   };
 
-  // difficulté
+  const handleEtapeChange = (id, text) => {
+    setEtapes(etapes.map(etape => 
+      etape.id === id ? { ...etape, text } : etape
+    ));
+  };
+
+  const handleTimeChange = (id, time) => {
+    setEtapes(etapes.map(etape => 
+      etape.id === id ? { ...etape, time: Number(time) } : etape
+    ));
+  };
+
+  //difficulte
   const handleDifficultyChange = (value) => {
     setDifficulty(value);
   };
 
-  // ingrédients
+  //ingredients
   const handleAddIngredient = () => {
     const newIngredient = { id: ingredients.length + 1, name: "", cost: 0 };
     setIngredients([...ingredients, newIngredient]);
@@ -47,12 +60,12 @@ function App() {
     )));
   };
 
-  // nb de personnes
+  //nb de personnes
   const handleNbPeopleChange = (value) => {
     setNbPeople(Number(value)); 
   };
 
-  //coût
+  //cout
   const totalCost = ingredients.reduce((acc, ingredient) => acc + Number(ingredient.cost), 0);
     let costCategory;
 
@@ -64,6 +77,8 @@ function App() {
         costCategory = "Assez cher";
       }
 
+  //temps
+  const totalTime = etapes.reduce((acc, etape) => acc + etape.time, 0);
 
   return (
     <>
@@ -72,13 +87,16 @@ function App() {
         <h1>Créer votre recette</h1>
         <div className="container">
           <section className="section1">
-            <RecipeName />
+            <RecipeName recipeName={recipeName}
+              onRecipeNameChange={setRecipeName}/>
             <h2 className="recipe-subtitle">RECETTE :</h2>
             {etapes.map((etape) => (
               <RecipeStep
                 key={etape.id}
                 etape={etape}
                 onDelete={handleDeleteEtape}
+                onEtapeChange={handleEtapeChange}
+                onTimeChange={handleTimeChange}
                 onChangeDifficulty={handleDifficultyChange}
               />
             ))}
@@ -112,11 +130,11 @@ function App() {
       <article className="article2">
         <div className="container">
           <section className="section3">
-            <h2>Nom de la recette</h2>
+            <h2>{recipeName || "Nom de la recette"}</h2>
             <div className="recipe-info">
               <div>
                 <img className="recipe-icone" src="/src/assets/imgTemps.png" alt="" />
-                <p>25 min</p>
+                <p>{totalTime} min</p>
               </div>
               <div>
                 <img className="recipe-icone" src="/src/assets/imgDifficulte.png" alt="" />
@@ -128,14 +146,12 @@ function App() {
               </div>
             </div>
             <div className="recipe-recette-etapes">
-              <div className="recipe-etape-1">
-                <h3>Etape 1</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore temporibus eaque molestiae excepturi dolor, at aliquam maiores incidunt ipsam et esse aperiam consequuntur hic? Sit hic ratione ipsam exercitationem culpa!</p>
-              </div>
-              <div className="recipe-etape-2">
-                <h3>Etape 2</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore temporibus eaque molestiae excepturi dolor, at aliquam maiores incidunt ipsam et esse aperiam consequuntur hic? Sit hic ratione ipsam exercitationem culpa!</p>
-              </div>
+              {etapes.map((etape, index) => (
+                <div key={index} className={`recipe-etape-${index + 1}`}>
+                  <h3>Etape {index + 1}</h3>
+                  <p>{etape.text}</p>
+                </div>
+              ))}
             </div>
           </section>
           <section className="section4">
