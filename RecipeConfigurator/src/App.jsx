@@ -5,20 +5,15 @@ import RecipeSubmitBtn from "./components/RecipeSubmitBtn";
 import RecipeName from "./components/RecipeName";
 import RecipeNbPeople from "./components/RecipeNbPeople";
 import "./index.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 function App() {
+  const etapesRef = useRef([]);
   const [etapes, setEtapes] = useState([]);
+  const nextIdRef = useRef(1);
+  const [time, setTime] = useState({ totalTime: 0 });
+
   const [ingredients, setIngredients] = useState([]);
-
-  const handleAddEtape = () => {
-    const newEtape = { id: etapes.length + 1, name: "" };
-    setEtapes([...etapes, newEtape]);
-  };
-
-  const handleDeleteEtape = (id) => {
-    setEtapes(etapes.filter((etape) => etape.id !== id));
-  };
 
   const handleAddIngredient = () => {
     const newIngredient = { id: ingredients.length + 1, name: "" };
@@ -29,19 +24,71 @@ function App() {
     setIngredients(ingredients.filter((ingredient) => ingredient.id !== id));
   };
 
+  const recipeNameRef = useRef("");
+  const [recipeName, setRecipeName] = useState("");
+
+  const ingredientsRef = useRef([]);
+  const [update, setUpdate] = useState(false);
+
+  const handleUpdateRecipeName = (newName) => {
+    recipeNameRef.current = newName;
+    setRecipeName(newName);
+  };
+
+  const handleAddEtape = () => {
+    const newEtape = { id: nextIdRef.current, name: "", time: 0 };
+    etapesRef.current.push(newEtape);
+    nextIdRef.current += 1;
+    setEtapes([...etapesRef.current]);
+  };
+
+  const handleDeleteEtape = (id) => {
+    etapesRef.current = etapesRef.current.filter((etape) => etape.id !== id);
+    setEtapes([...etapesRef.current]);
+  };
+
+  const updateStep = (id, name) => {
+    const etape = etapesRef.current.find((etape) => etape.id === id);
+    if (etape) {
+      etape.name = name;
+    }
+    setEtapes([...etapesRef.current]);
+  };
+
+  // time
+  const updateStepTime = (id, newTime) => {
+    const etape = etapesRef.current.find((etape) => etape.id === id);
+    if (etape) {
+      etape.time = Number(newTime);
+    }
+    setEtapes([...etapesRef.current]);
+  };
+  useEffect(() => {
+    const calculateTotalTime = () => {
+      const totalTime = etapesRef.current.reduce(
+        (acc, etape) => acc + Number(etape.time),
+        0
+      );
+      setTime({ totalTime });
+    };
+    calculateTotalTime();
+  }, [etapes]);
+
   return (
     <>
       <article className="article1">
         <h1>Créer votre recette</h1>
         <div className="container">
           <section className="section1">
-            <RecipeName />
+            <RecipeName updateRecipeName={handleUpdateRecipeName} />
             <h2 className="recipe-subtitle">RECETTE :</h2>
             {etapes.map((etape) => (
               <RecipeStep
                 key={etape.id}
                 etape={etape}
                 onDelete={handleDeleteEtape}
+                updateStep={updateStep}
+                updateTime={updateStepTime}
               />
             ))}
             <div className="recipe-btn">
@@ -51,7 +98,7 @@ function App() {
                 onClick={handleAddEtape}
               >
                 {" "}
-                + Ajouter un ingrédient
+                + Ajouter une étape
               </button>
             </div>
           </section>
@@ -79,11 +126,13 @@ function App() {
           </section>
         </div>
         <RecipeSubmitBtn />
+
+        {/*  Affichage */}
       </article>
       <article className="article2">
         <div className="container">
           <section className="section3">
-            <h2>Nom de la recette</h2>
+            <h2>{recipeName}</h2>
             <div className="recipe-info">
               <div>
                 <img
@@ -91,7 +140,17 @@ function App() {
                   src="/src/assets/imgTemps.png"
                   alt=""
                 />
-                <p>25 min</p>
+                <div>
+                  <div>
+                    <div>
+                      <p>
+                        {time.totalTime !== undefined
+                          ? `${time.totalTime} minutes`
+                          : "Calcul en cours..."}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div>
                 <img
@@ -111,24 +170,12 @@ function App() {
               </div>
             </div>
             <div className="recipe-recette-etapes">
-              <div className="recipe-etape-1">
-                <h3>Etape 1</h3>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Dolore temporibus eaque molestiae excepturi dolor, at aliquam
-                  maiores incidunt ipsam et esse aperiam consequuntur hic? Sit
-                  hic ratione ipsam exercitationem culpa!
-                </p>
-              </div>
-              <div className="recipe-etape-2">
-                <h3>Etape 2</h3>
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Dolore temporibus eaque molestiae excepturi dolor, at aliquam
-                  maiores incidunt ipsam et esse aperiam consequuntur hic? Sit
-                  hic ratione ipsam exercitationem culpa!
-                </p>
-              </div>
+              {etapes.map((etape, index) => (
+                <div key={etape.id}>
+                  <h3>Étape {index + 1}</h3>
+                  <p>{etape.name}</p>
+                </div>
+              ))}
             </div>
           </section>
           <section className="section4">
@@ -139,14 +186,10 @@ function App() {
             />
             <div>
               <h3>Nombre de personne : </h3>
-              <div>
-                <p>Ingrédient 1</p>
-                <p>Ingrédient 2</p>
-              </div>
             </div>
           </section>
         </div>
-        <h1>Bonne appétit !</h1>
+        <h1>Bon appétit !</h1>
       </article>
     </>
   );
