@@ -1,4 +1,12 @@
 const RecipeIngredient = ({ ingredient, onChange, onDelete }) => {
+  const handleNameChange = (e) => {
+    onChange(ingredient.id, e.target.value, ingredient.cost);
+  };
+
+  const handleCostChange = (e) => {
+    onChange(ingredient.id, ingredient.name, e.target.value);
+  };
+
   return (
     <div className="recipe-ingredient-container">
       <label className="recipe-ingredient-label">
@@ -7,9 +15,7 @@ const RecipeIngredient = ({ ingredient, onChange, onDelete }) => {
             className="recipe-textarea"
             placeholder="Ajouter un ingrédient"
             value={ingredient.name}
-            onChange={(e) =>
-              onChange(ingredient.id, e.target.value, ingredient.cost)
-            }
+            onChange={handleNameChange}
           ></textarea>
           <button
             className="recipe-btn-ingredient-delete"
@@ -23,10 +29,9 @@ const RecipeIngredient = ({ ingredient, onChange, onDelete }) => {
             type="number"
             className="recipe-ingredient-cost"
             placeholder="Coût"
-            value={ingredient.cost}
-            onChange={(e) =>
-              onChange(ingredient.id, ingredient.name, e.target.value)
-            }
+            value={ingredient.cost || ""}
+            onChange={handleCostChange}
+            min="0"
           />
         </div>
       </label>

@@ -1,6 +1,9 @@
 const RecipeTimeInput = ({ time, onTimeChange }) => {
   const handleTimeValue = (event) => {
-    onTimeChange(event.target.value);
+    const value = event.target.value;
+    if (value >= 0) {
+      onTimeChange(value);
+    }
   };
 
   return (
@@ -12,6 +15,7 @@ const RecipeTimeInput = ({ time, onTimeChange }) => {
           className="recipe-select-time"
           name="recipe-select"
           type="number"
+          min="0"
           value={time}
           onChange={handleTimeValue}
         />

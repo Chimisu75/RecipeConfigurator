@@ -5,17 +5,12 @@ const RecipeModel = require("./models/Recipes.js");
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 
 // MongoDB connection
 mongoose
   .connect(
-    "mongodb+srv://recipeDB:recipePassword@cluster0.y7hzq76.mongodb.net/recipes?retryWrites=true&w=majority&appName=Cluster0",
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000, // Adjust timeout as needed
-    }
+    "mongodb+srv://recipeDB:recipePassword@cluster0.y7hzq76.mongodb.net/recipes?retryWrites=true&w=majority&appName=Cluster0"
   )
   .then(() => {
     console.log("MongoDB connected...");

@@ -1,6 +1,11 @@
-function RecipeSubmitBtn() {
-  return <div className="recipe-submit-container">
-  <button className="recipe-submit" type="submit">Enregistrer la recette</button> </div>;
-}
+const RecipeSubmitBtn = ({ onSubmit }) => {
+  return (
+    <div className="recipe-submit-container">
+      <button onClick={onSubmit} className="recipe-submit">
+        Soumettre la recette
+      </button>
+    </div>
+  );
+};
 
 export default RecipeSubmitBtn;

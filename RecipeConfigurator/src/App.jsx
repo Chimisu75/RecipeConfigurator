@@ -5,6 +5,8 @@ import RecipeSubmitBtn from "./components/RecipeSubmitBtn";
 import RecipeName from "./components/RecipeName";
 import RecipeNbPeople from "./components/RecipeNbPeople";
 import "./index.css";
+import axios from "axios";
+
 import { useState, useRef, useEffect } from "react";
 
 function App() {
@@ -88,6 +90,30 @@ function App() {
   //temps
   const totalTime = etapes.reduce((acc, etape) => acc + etape.time, 0);
 
+  //POST Mongodb
+
+  const handleSubmit = async () => {
+    const recipeData = {
+      name: recipeName,
+      ingredients,
+      totalTime,
+      nbPeople,
+      steps: etapes,
+      photo: photoUrl,
+      difficulty,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/addRecipe",
+        recipeData
+      );
+      console.log("Recipe added:", response.data);
+    } catch (error) {
+      console.error("Error adding recipe:", error);
+    }
+  };
+
   return (
     <>
       <article className="article1">
@@ -148,7 +174,7 @@ function App() {
             </div>
           </section>
         </div>
-        <RecipeSubmitBtn />
+        <RecipeSubmitBtn onSubmit={handleSubmit} />
       </article>
       <article className="article2">
         <div className="container">
