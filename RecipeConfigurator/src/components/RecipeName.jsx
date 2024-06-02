@@ -1,19 +1,15 @@
-import { useRef } from "react";
-
-function RecipeName({ updateRecipeName }) {
-  const inputRef = useRef(null);
-  const handleChange = () => {
-    if (inputRef.current) {
-      updateRecipeName(inputRef.current.value);
-    }
+function RecipeName({ recipeName, onRecipeNameChange }) {
+  const handleNameChange = (event) => {
+    onRecipeNameChange(event.target.value);
   };
+
   return (
     <input
-      ref={inputRef}
       className="recipe-nom"
       type="text"
       placeholder="Nom de votre recette"
-      onChange={handleChange}
+      value={recipeName}
+      onChange={handleNameChange}
     />
   );
 }

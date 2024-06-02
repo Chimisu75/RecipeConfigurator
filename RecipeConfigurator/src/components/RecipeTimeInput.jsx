@@ -1,10 +1,5 @@
-import { useState } from "react";
-
-const RecipeTimeInput = ({ onTimeChange }) => {
-  const [timeValue, setTimeValue] = useState(1);
-
+const RecipeTimeInput = ({ time, onTimeChange }) => {
   const handleTimeValue = (event) => {
-    setTimeValue(event.target.value);
     onTimeChange(event.target.value);
   };
 
@@ -16,7 +11,8 @@ const RecipeTimeInput = ({ onTimeChange }) => {
         <input
           className="recipe-select-time"
           name="recipe-select"
-          value={timeValue}
+          type="number"
+          value={time}
           onChange={handleTimeValue}
         />
       </label>

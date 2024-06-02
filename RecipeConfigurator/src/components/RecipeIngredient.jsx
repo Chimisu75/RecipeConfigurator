@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-const RecipeIngredient = ({ ingredient, onDelete }) => {
+const RecipeIngredient = ({ ingredient, onChange, onDelete }) => {
   return (
     <div className="recipe-ingredient-container">
       <label className="recipe-ingredient-label">
@@ -8,6 +6,10 @@ const RecipeIngredient = ({ ingredient, onDelete }) => {
           <textarea
             className="recipe-textarea"
             placeholder="Ajouter un ingrédient"
+            value={ingredient.name}
+            onChange={(e) =>
+              onChange(ingredient.id, e.target.value, ingredient.cost)
+            }
           ></textarea>
           <button
             className="recipe-btn-ingredient-delete"
@@ -21,6 +23,10 @@ const RecipeIngredient = ({ ingredient, onDelete }) => {
             type="number"
             className="recipe-ingredient-cost"
             placeholder="Coût"
+            value={ingredient.cost}
+            onChange={(e) =>
+              onChange(ingredient.id, ingredient.name, e.target.value)
+            }
           />
         </div>
       </label>
