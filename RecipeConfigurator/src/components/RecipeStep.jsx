@@ -1,4 +1,3 @@
-import React from "react";
 import RecipeTimeInput from "./RecipeTimeInput";
 import RecipeDifficulty from "./RecipeDifficulty";
 
@@ -34,9 +33,9 @@ const RecipeStep = ({
           </button>
         </div>
         <div className="recipe-controls">
-          <RecipeTimeInput />
+          <RecipeTimeInput time={etape.time} onTimeChange={handleTimeChange} />
           <br />
-          <RecipeDifficulty />
+          <RecipeDifficulty onChangeDifficulty={onChangeDifficulty} />
         </div>
       </div>
     </div>
